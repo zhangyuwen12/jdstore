@@ -7,13 +7,13 @@
     <tr>
       <th>#</th>
       <th width="220">Coupon title</th>
-      <th>Price</th>
+      <th>Amount</th>
       <th>Start_at</th>
       <th>Expire_at</th>
-      <th>兑换码</th>
+      <th>Coupon_code</th>
       <th>Is_online</th>
-      <th width="100"> Status</th>
-      <th width="100"> Options</th>
+      <th>Status</th>
+      <th>Options</th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +26,7 @@
           <%= coupon.title %>
         </td>
         <td>
-          <%= coupon.price %>
+          <%= coupon.amount %>
         </td>
         <td>
           <%= coupon.start_at %>
@@ -41,7 +41,7 @@
           <%= coupon.is_online %>
         </td>
         <td>
-          <%= coupon.status %>
+          <%= coupon.aasm_state %>
         </td>
         <td>
           <%= link_to("Edit", edit_admin_coupon_path(coupon)) %>

@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
     @current_cart ||= find_cart
   end
 
+  def after_sign_in_path_for(resource)
+    admin_products_path if resource.is_admin?
+    root_path
+  end
+
   private
 
   def find_cart

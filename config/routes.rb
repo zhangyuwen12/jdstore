@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     collection do
       delete :clean
       post :checkout
+      get  :coupon_amount
+      post   :checkout
     end
   end
 

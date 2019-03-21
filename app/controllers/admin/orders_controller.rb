@@ -29,6 +29,8 @@ class Admin::OrdersController < ApplicationController
   def cancel
     @order = Order.find(params[:id])
     @order.cancel_order!
+    @coupon = Coupon.find_by_code(@order.coupon_code)
+    @coupon.cancel!  if @coupon.present?
     OrderMailer.notify_cancel(@order).deliver!
     redirect_to :back
   end

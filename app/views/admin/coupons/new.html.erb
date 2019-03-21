@@ -7,15 +7,15 @@
   </div>
 
   <div class="group">
-    <%= f.input :price, class: 'price', placeholder: "请输入优惠价格" %>
+    <%= f.input :amount, class: 'amount', placeholder: "请输入优惠金额" %>
   </div>
 
   <div class="group">
-    <%= f.input :start_at,  class: 'datetime-local', type: "data", value: @coupon.start_at, placeholder: "请输入开始时间", id: "datetimepicker-expire", "data-date-format" => "YYYY-MM-DD HH:mm:ss" %>
+    <%= f.input :start_at,  class: 'datetime-local', type: "data", value: @coupon.start_at, placeholder: "请输入开始时间", id: "datetimepicker-expire", "data-date-format" => "YYYY-MM-DD" %>
   </div>
 
   <div class="group">
-    <%= f.input :expire_at, class: 'datetime-local', type: "data", value: @coupon.start_at, placeholder: "请输入结束时间", id: "datetimepicker-expire", "data-date-format" => "YYYY-MM-DD HH:mm:ss" %>
+    <%= f.input :expire_at, class: 'datetime-local', type: "data", value: @coupon.expire_at, placeholder: "请输入结束时间", id: "datetimepicker-expire", "data-date-format" => "YYYY-MM-DD" %>
   </div>
 
   <div class="group">

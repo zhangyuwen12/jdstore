@@ -66,7 +66,7 @@
 
           <legend> 优惠券</legend>
           <div class="form-group col-lg-6">
-           <%= f.input :shipping_name  %>
+           <%= f.input :coupon_code, label: "请输入可使用的优惠券码"  %>
           </div>
 
         <div class="checkout">
@@ -78,3 +78,22 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('#order_coupon_code').bind('input propertychange', function() {
+    $('.alert_amount').html("");
+    var code = $('#order_coupon_code').val();
+    if(code.length > 8) {
+      $('.alert_amount').html("优惠码长度错误")
+    }
+    if(code.length == 8) {
+        $.ajax({
+          url: "<%= coupon_amount_carts_path %>?coupon_code=" + code,
+          method: "GET",
+          dataType: "json",
+          success: function(data) {
+            $('.alert_amount').html(data["message"]);
+          }
+        });
+    }
+  });
