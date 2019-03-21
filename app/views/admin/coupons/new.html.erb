@@ -22,10 +22,6 @@
     <%= f.input :is_online %>
   </div>
 
-  <div class="group">
-    <%= f.select(:status, [['待使用', 1], ['已使用', "0"], ['未到使用期', "2"]], {}, class: 'form-control', placeholder: "请选择当前的状态") %>
-  </div>
-
   <%= f.submit "Submit", data: { disable_with: "Submitting..." } %>
 
 <% end %>
