@@ -4,8 +4,8 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>生成时间</th>
-
+      <th>生成订单时间</th>
+      <th>订单详情</th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +14,7 @@
     <tr>
       <td> <%= link_to(order.id, order_path(order.token)) %> </td>
       <td> <%= order.created_at.to_s(:long) %> </td>
+      <td> <%= link_to("详情", order_path(order.token)) %> </td>
     </tr>
     <% end %>
 

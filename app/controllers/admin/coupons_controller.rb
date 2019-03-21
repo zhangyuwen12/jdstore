@@ -23,10 +23,14 @@ class Admin::CouponsController < ApplicationController
   def update
     @coupon = Coupon.find(params[:id])
 
-    if @coupon.update(coupon_params)
+    if coupon_params["aasm_state"] == "invalid"
+      @coupon.admin_valid!
+      redirect_to admin_coupons_path
+    elsif coupon_params["aasm_state"] == "valid_unused"
+      @coupon.admin_invalid!
       redirect_to admin_coupons_path
     else
-      render :edit
+      render :back
     end
   end
 
@@ -43,6 +47,6 @@ class Admin::CouponsController < ApplicationController
   private
 
   def coupon_params
-    params.require(:coupon).permit(:title, :price, :start_at, :expire_at, :is_online, :status)
+    params.require(:coupon).permit(:title, :amount, :start_at, :expire_at, :is_online, :status)
   end
 end

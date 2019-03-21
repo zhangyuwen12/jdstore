@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320092822) do
+ActiveRecord::Schema.define(version: 20190320220714) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -28,13 +28,16 @@ ActiveRecord::Schema.define(version: 20190320092822) do
   create_table "coupons", force: :cascade do |t|
     t.string   "title"
     t.integer  "price"
-    t.integer  "start_at"
-    t.integer  "expire_at"
+    t.datetime "start_at"
+    t.datetime "expire_at"
     t.boolean  "is_online"
     t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "code"
+    t.integer  "order_id",   default: 0
+    t.string   "aasm_state", default: "order_placed"
+    t.integer  "amount"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -50,6 +53,8 @@ ActiveRecord::Schema.define(version: 20190320092822) do
     t.boolean  "is_paid",          default: false
     t.string   "payment_method"
     t.string   "aasm_state",       default: "order_placed"
+    t.string   "coupon_code"
+    t.integer  "coupon_amount"
     t.index ["aasm_state"], name: "index_orders_on_aasm_state"
   end
 
